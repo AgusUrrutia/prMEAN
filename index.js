@@ -19,7 +19,7 @@ app.use(fileUpload())
 
 
 app.use(require('./view/people.view'));
-mongoose.connect('mongodb://127.0.0.1:27017/apirest')
+mongoose.connect('mongodb+srv://agusdv:agusdv@cluster0.xzlxyql.mongodb.net/')
   .then(() => console.log('Connected!'));
 ////////////////////////////////////////////////////////////////
 //SCHEMA
