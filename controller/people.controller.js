@@ -9,6 +9,7 @@ let getPeople = (req, res) => {
             status: 200,
             data
         })
+        console.log("PETICION!!!!!");
 
     }).catch((err) => {
         console.log(err);
