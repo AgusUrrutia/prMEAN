@@ -6,7 +6,6 @@ let getPeople = (req, res) => {
 
     User.find({}).then((data)=>{
         res.json({
-            status: 200,
             data
         })
         console.log("PETICION!!!!!");
