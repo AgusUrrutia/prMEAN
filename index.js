@@ -4,6 +4,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
+const cors = require('cors');
+
 //----------------------------------------------------------------//
 
 const app = express();
@@ -12,6 +14,9 @@ const app = express();
 // CONEXION A LA BASE DE DATOSSSS
 // mongoose.connect('mongodb://127.0.0.1:27017/apirest',{useNewUrlParser: true,useUnifiedTopology: true});
 ////////////////////////////////////////////////////////////////////////
+app.use(cors({
+    origin : '*'
+}))
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
