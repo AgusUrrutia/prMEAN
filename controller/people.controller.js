@@ -5,9 +5,7 @@ let getPeople = (req, res) => {
 
 
     User.find({}).then((data)=>{
-        res.json({
-            data
-        })
+        res.json()
         console.log("PETICION!!!!!");
 
     }).catch((err) => {
