@@ -1,4 +1,8 @@
 const User = require('../model/people.model');
+const jwt = require('jsonwebtoken');
+
+let login = false;
+let tok = '';
 
 
 let getPeople = (req, res) => {
@@ -6,7 +10,7 @@ let getPeople = (req, res) => {
 
     User.find({}).then((data)=>{
         res.json(data)
-        console.log("PETICION!!!!!");
+        console.log("token: " + tok);
 
     }).catch((err) => {
         console.log(err);
@@ -16,7 +20,47 @@ let getPeople = (req, res) => {
     // res.send('Welcome')
 };
 
-let postPeople = (req, res) => {
+let loginPeople = (req, res) => {
+
+    
+    let body = req.body;
+
+    User.findOne({nombre: body.nombre})
+        .then((data)=>{
+            if(data != null){
+                if(data.apellido === body.apellido){
+                    let token = jwt.sign({
+                        data
+                    }, "sindata",{expiresIn: 60*60*24*1})
+                    tok = token;
+                    res.json({
+                        status: 200,
+                        token,
+                        msg: "Success"
+                    })
+                }else{
+                    res.json({
+                        status:400,
+                        msg:"¡¡¡Password invalid!!!"
+                    })
+                }
+            }else{
+                res.json({
+                    status:400,
+                    msg:"¡¡¡User invalid!!!"
+                })
+            }
+
+            
+        }).catch((err)=>{
+            console.log(err);
+        })
+
+    
+
+};
+
+let registerPeople = (req, res) => {
 
     if(!req.file){
         let body = req.body;
@@ -45,7 +89,12 @@ let postPeople = (req, res) => {
 };
 
 
+
+
+
+
 module.exports = {
     getPeople,
-    postPeople
+    registerPeople,
+    loginPeople
 }

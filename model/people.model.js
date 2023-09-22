@@ -8,11 +8,12 @@ let Schema = mongoose.Schema;
 let userSchema = new Schema({
     nombre: {
         type: String,
-        required: [true,"El nombre es obligatorio"]
+        required: [true,"El nombre es obligatorio"],
+        unique: true
     },
     apellido: {
         type: String,
-        required: [true,"El apellido es obligatorio"]
+        required: [true,"El apellido es obligatorio"],
     }
 
 

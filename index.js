@@ -12,7 +12,6 @@ const app = express();
 
 ////////////////////////////////////////////////////////////////////////
 // CONEXION A LA BASE DE DATOSSSS
-// mongoose.connect('mongodb://127.0.0.1:27017/apirest',{useNewUrlParser: true,useUnifiedTopology: true});
 ////////////////////////////////////////////////////////////////////////
 app.use(cors({
     origin : '*'
@@ -24,6 +23,7 @@ app.use(fileUpload())
 
 
 app.use(require('./view/people.view'));
+// mongoose.connect('mongodb://127.0.0.1:27017/apirest',{useNewUrlParser: true,useUnifiedTopology: true});
 mongoose.connect('mongodb+srv://agusdv:agusdv@cluster0.xzlxyql.mongodb.net/')
   .then(() => console.log('Connected!'));
 ////////////////////////////////////////////////////////////////
@@ -49,22 +49,7 @@ let userSchema = new Schema({
 // const User = mongoose.model("personas",userSchema)
 
 //PETICIONES GET MAAANNNNN/////////////////////////////////////////////
-app.get('/', (req, res) => {
 
-
-    User.find({}).then((data)=>{
-        res.json({
-            status: 200,
-            data
-        })
-
-    }).catch((err) => {
-        console.log(err);
-      });
-
-
-    // res.send('Welcome')
-});
 ///////////////////////////////////////////////////////////////////////
 
 
