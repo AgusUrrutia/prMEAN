@@ -10,7 +10,7 @@ let verifyToken = (req, res, next) => {
                 err
             })
         }
-        req.nombre = decoded.nombre;
+        req.nameUser = decoded.nameUser;
         next();
     });
 };

@@ -25,10 +25,10 @@ let loginPeople = (req, res) => {
     
     let body = req.body;
 
-    User.findOne({nombre: body.nombre})
+    User.findOne({nameUser: body.nameUser})
         .then((data)=>{
             if(data != null){
-                if(data.apellido === body.apellido){
+                if(data.password === body.password){
                     let token = jwt.sign({
                         data
                     }, "sindata",{expiresIn: 60*60*24*1})
@@ -36,6 +36,7 @@ let loginPeople = (req, res) => {
                     res.json({
                         status: 200,
                         token,
+                        data,
                         msg: "Success"
                     })
                 }else{
@@ -67,8 +68,10 @@ let registerPeople = (req, res) => {
         console.log(body);
 
         let newUser = new User({
-            nombre: body.nombre,
-            apellido: body.apellido
+            nameUser: body.nameUser,
+            password: body.password,
+            email: body.email,
+            role: "user"
         })
         
         newUser.save()

@@ -28,20 +28,20 @@ mongoose.connect('mongodb+srv://agusdv:agusdv@cluster0.xzlxyql.mongodb.net/')
   .then(() => console.log('Connected!'));
 ////////////////////////////////////////////////////////////////
 //SCHEMA
-let Schema = mongoose.Schema;
+// let Schema = mongoose.Schema;
 
-let userSchema = new Schema({
-    nombre: {
-        type: String,
-        required: [true,"El nombre es obligatorio"]
-    },
-    apellido: {
-        type: String,
-        required: [true,"El apellido es obligatorio"]
-    }
+// let userSchema = new Schema({
+//     nombre: {
+//         type: String,
+//         required: [true,"El nombre es obligatorio"]
+//     },
+//     apellido: {
+//         type: String,
+//         required: [true,"El apellido es obligatorio"]
+//     }
 
 
-})
+// })
 
 
 
