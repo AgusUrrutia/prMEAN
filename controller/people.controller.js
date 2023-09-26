@@ -1,17 +1,12 @@
 const User = require('../model/people.model');
 const jwt = require('jsonwebtoken');
 
-let login = false;
-let tok = '';
-
 
 let getPeople = (req, res) => {
 
-
+    console.log(req);
     User.find({}).then((data)=>{
         res.json(data)
-        console.log("token: " + tok);
-
     }).catch((err) => {
         console.log(err);
       });
@@ -32,7 +27,6 @@ let loginPeople = (req, res) => {
                     let token = jwt.sign({
                         data
                     }, "sindata",{expiresIn: 60*60*24*1})
-                    tok = token;
                     res.json({
                         status: 200,
                         token,
