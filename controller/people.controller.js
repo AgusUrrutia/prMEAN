@@ -70,9 +70,13 @@ let registerPeople = (req, res) => {
         
         newUser.save()
             .then((data)=>{
+                let token = jwt.sign({
+                    data
+                }, "sindata",{expiresIn: 60*60*24*1})
                 res.json({
                     status: 200,
                     data,
+                    token,
                     msg: "Success"
                 })
             }).catch((err)=>{
