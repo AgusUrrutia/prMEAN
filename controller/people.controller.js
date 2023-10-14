@@ -92,46 +92,49 @@ let registerPeople = (req, res) => {
 let deletePeople = (req, res) => {
 
     let id = req.params.id;
-
-    User.findById(id,(err, data)=>{
-        if(err){
-            return res.json({
-                status: 500,
-                msg: "Server Error",
-                err
+    User.findById(id)
+        .then(data =>{
+            if(!data){
+                return res.json({
+                    status: 400,
+                    msg: "Not Found!!!!!!!",
+                })
+            }
+            
+        
+            User.findByIdAndRemove(id)
+             .then(data=>{
+                if(data){
+                    return res.json({
+                        status:200,
+                        msg: "Delete sucessful!"
+                    })
+                }
             })
-        }
-        if(!data){
-            return res.json({
-                status: 400,
-                msg: "Not Found",
-            })
-        }
-
-        User.findByIdAndRemove(id, (err,data)=>{
-
+            .catch((err)=>{
+                if(err){
+                    return res.json({
+                        status: 500,
+                        msg: "Delete Error",
+                        err
+                    })
+                }
+            })   
+        })
+        .catch((err)=>{
             if(err){
                 return res.json({
-                    status: 500,
-                    msg: "Delete Error",
+                    status: 404,
+                    msg: "Not found!!!!!!",
                     err
                 })
             }
-            if(data){
-                return res.json({
-                    status:200,
-                    msg: "Delete sucessful!"
-                })
-            }
-
-        })
-
-
-    })
+        })   
+    }
 
 
 
-}
+
 
 
 
