@@ -9,7 +9,7 @@ app.post('/register-people', User.registerPeople);
 
 
 //TERMINAR DELETE PEOPLE
-app.delete('/delete-people:id',verifyToken, User.deletePeople);
+app.delete('/delete-people/:id',verifyToken, User.deletePeople);
 //TERMINAR DELETE PEOPLE
 
 
