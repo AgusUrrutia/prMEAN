@@ -89,12 +89,57 @@ let registerPeople = (req, res) => {
 
 };
 
+let deletePeople = (req, res) => {
+
+    let id = req.params.id;
+
+    User.findById(id,(err, data)=>{
+        if(err){
+            return res.json({
+                status: 500,
+                msg: "Server Error",
+                err
+            })
+        }
+        if(!data){
+            return res.json({
+                status: 400,
+                msg: "Not Found",
+            })
+        }
+
+        User.findByIdAndRemove(id, (err,data)=>{
+
+            if(err){
+                return res.json({
+                    status: 500,
+                    msg: "Delete Error",
+                    err
+                })
+            }
+            if(data){
+                return res.json({
+                    status:200,
+                    msg: "Delete sucessful!"
+                })
+            }
+
+        })
+
+
+    })
+
+
+
+}
+
 
 
 
 
 
 module.exports = {
+    deletePeople,
     getPeople,
     registerPeople,
     loginPeople
