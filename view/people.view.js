@@ -12,7 +12,7 @@ app.post('/register-people', User.registerPeople);
 app.delete('/delete-people/:id',verifyToken, User.deletePeople);
 //TERMINAR DELETE PEOPLE
 
-
+app.put('/edit-people/:id',verifyToken, User.editPeople);
 
 app.post('/login-people', User.loginPeople)
 

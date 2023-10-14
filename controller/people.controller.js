@@ -132,7 +132,55 @@ let deletePeople = (req, res) => {
         })   
     }
 
+    let editPeople = (req, res) => {
 
+        let id = req.params.id;
+
+        let dataUser = {
+            nameUser: req.body.userName,
+            password: req.body. password
+        }
+
+
+        User.findById(id)
+            .then(data =>{
+                if(!data){
+                    return res.json({
+                        status: 400,
+                        msg: "Not Found!!!!!!!",
+                    })
+                }
+                
+            
+                User.findByIdAndUpdate(id,dataUser,{new:true,runValidators:true})
+                 .then(data=>{
+                    if(data){
+                        return res.json({
+                            status:200,
+                            msg: "Delete sucessful!"
+                        })
+                    }
+                })
+                .catch((err)=>{
+                    if(err){
+                        return res.json({
+                            status: 500,
+                            msg: "Delete Error",
+                            err
+                        })
+                    }
+                })   
+            })
+            .catch((err)=>{
+                if(err){
+                    return res.json({
+                        status: 404,
+                        msg: "Not found!!!!!!",
+                        err
+                    })
+                }
+            })   
+        }
 
 
 
@@ -142,6 +190,7 @@ let deletePeople = (req, res) => {
 
 
 module.exports = {
+    editPeople,
     deletePeople,
     getPeople,
     registerPeople,
