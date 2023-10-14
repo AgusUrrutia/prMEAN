@@ -155,9 +155,14 @@ let deletePeople = (req, res) => {
                 User.findByIdAndUpdate(id,dataUser,{new:true,runValidators:true})
                  .then(data=>{
                     if(data){
-                        return res.json({
-                            status:200,
-                            msg: "Delete sucessful!"
+                        let token = jwt.sign({
+                            data
+                        }, "sindata",{expiresIn: 60*60*24*1})
+                        res.json({
+                            status: 200,
+                            data,
+                            token,
+                            msg: "Success"
                         })
                     }
                 })
