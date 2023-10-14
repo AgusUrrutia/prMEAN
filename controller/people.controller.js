@@ -92,52 +92,44 @@ let registerPeople = (req, res) => {
 let deletePeople = (req, res) => {
 
     let id = req.params.id;
-
-
-    console.log(id);
-    // User.findById(id)
-    //     .then(data =>{
-    //         if(!data){
-    //             return res.json({
-    //                 status: 400,
-    //                 msg: "Not Found!!!!!!!",
-    //             })
-    //         }
-
-    //         return res.json({
-    //             status: 200,
-    //             msg: "Encontrado"
-    //         })
+    User.findById(id)
+        .then(data =>{
+            if(!data){
+                return res.json({
+                    status: 400,
+                    msg: "Not Found!!!!!!!",
+                })
+            }
             
         
-    //         // User.findByIdAndRemove(id)
-    //         //  .then(data=>{
-    //         //     if(data){
-    //         //         return res.json({
-    //         //             status:200,
-    //         //             msg: "Delete sucessful!"
-    //         //         })
-    //         //     }
-    //         // })
-    //         // .catch((err)=>{
-    //         //     if(err){
-    //         //         return res.json({
-    //         //             status: 500,
-    //         //             msg: "Delete Error",
-    //         //             err
-    //         //         })
-    //         //     }
-    //         // })   
-    //     })
-    //     .catch((err)=>{
-    //         if(err){
-    //             return res.json({
-    //                 status: 404,
-    //                 msg: "Not found!!!!!!",
-    //                 err
-    //             })
-    //         }
-    //     })   
+            User.findByIdAndRemove(id)
+             .then(data=>{
+                if(data){
+                    return res.json({
+                        status:200,
+                        msg: "Delete sucessful!"
+                    })
+                }
+            })
+            .catch((err)=>{
+                if(err){
+                    return res.json({
+                        status: 500,
+                        msg: "Delete Error",
+                        err
+                    })
+                }
+            })   
+        })
+        .catch((err)=>{
+            if(err){
+                return res.json({
+                    status: 404,
+                    msg: "Not found!!!!!!",
+                    err
+                })
+            }
+        })   
     }
 
 
