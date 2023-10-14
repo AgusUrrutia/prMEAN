@@ -94,12 +94,12 @@ let deletePeople = (req, res) => {
     let id = req.params.id;
     User.findById(id)
         .then(data =>{
-            if(!data){
-                return res.json({
-                    status: 400,
-                    msg: "Not Found!!!!!!!",
-                })
-            }
+            // if(!data){
+            //     return res.json({
+            //         status: 400,
+            //         msg: "Not Found!!!!!!!",
+            //     })
+            // }
             
         
             User.findByIdAndRemove(id)
