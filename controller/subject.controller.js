@@ -1,18 +1,17 @@
-const User = require('../model/people.model');
+const Material = require('../model/material.model');
 const jwt = require('jsonwebtoken');
 
 
-let getPeople = (req, res) => {
+let getSubject = (req, res) => {
+    const subject = req.params.subject;
+    const cant = parseInt(req.params.cant);
 
-    console.log(req);
-    User.find({}).then((data)=>{
-        res.json(data)
+    Material.find({ subject: subject }).limit(cant).then((data) => {
+        res.json(data);
     }).catch((err) => {
         console.log(err);
-      });
-
-
-    // res.send('Welcome')
+        res.status(500).json({ error: 'Error al obtener los materiales.' });
+    });
 };
 
 let loginPeople = (req, res) => {
@@ -184,17 +183,10 @@ let deletePeople = (req, res) => {
             })   
         }
 
-
-
-
-
-
-
-
 module.exports = {
     editPeople,
     deletePeople,
-    getPeople,
+    getSubject,
     registerPeople,
     loginPeople
 }
