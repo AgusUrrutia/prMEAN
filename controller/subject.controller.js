@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 let getSubject = (req, res) => {
     const subject = req.params.subject;
     const cant = parseInt(req.params.cant);
-
+    console.log("getSubject   ", subject, cant );
     Material.find({ subject: subject }).limit(cant).then((data) => {
         res.json(data);
     }).catch((err) => {
