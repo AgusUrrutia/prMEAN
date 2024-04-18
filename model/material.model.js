@@ -18,6 +18,10 @@ let materialSchema = new Schema({
     descripcion: {
         type: String,
         required: [true,"La desc es obligatorio"],
+    },
+    subject: {
+        type: String,
+        required: [true,"La sub es obligatorio"],
     }
 })
 
