@@ -25,4 +25,4 @@ let materialSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model("material",materialSchema)
+module.exports = mongoose.model("materials",materialSchema)
