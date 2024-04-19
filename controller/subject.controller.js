@@ -5,8 +5,19 @@ const jwt = require('jsonwebtoken');
 let getSubject = (req, res) => {
     const subject = req.params.subject;
     const cant = parseInt(req.params.cant);
-    console.log("getSubject   ", subject, cant );
-    Material.find({ subject: subject }).limit(cant).then((data) => {
+
+    Material.find({subject:subject}).limit(cant).then((data) => {
+        res.json(data);
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).json({ error: 'Error al obtener los materiales.' });
+    });
+};
+
+let getAllSubject = (req, res) => {
+    const subject = req.params.subject;
+
+    Material.find({subject:subject}).then((data) => {
         res.json(data);
     }).catch((err) => {
         console.log(err);
@@ -185,6 +196,7 @@ let deletePeople = (req, res) => {
 
 module.exports = {
     editPeople,
+    getAllSubject,
     deletePeople,
     getSubject,
     registerPeople,

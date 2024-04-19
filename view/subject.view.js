@@ -3,7 +3,8 @@ const app = express();
 const Subject = require('../controller/subject.controller');
 const { verifyToken } = require('../middleware/autentication');
 
-app.get('get-material/cant/:subject/:cant',verifyToken, Subject.getSubject);
+app.get('/get-material/:subject/:cant', Subject.getSubject);
+app.get('/get-material/:subject', Subject.getAllSubject);
 // app.post('/register-people', User.registerPeople);
 
 
