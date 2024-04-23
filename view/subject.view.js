@@ -5,7 +5,9 @@ const { verifyToken } = require('../middleware/autentication');
 
 app.get('/get-material/:subject/:cant', Subject.getSubject);
 app.get('/get-material/:subject', Subject.getAllSubject);
-// app.post('/register-people', User.registerPeople);
+
+
+app.post('/make-subject', Subject.makeSubject);
 
 
 
